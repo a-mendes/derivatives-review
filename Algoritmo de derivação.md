@@ -52,14 +52,17 @@ $$
 
 ##  Verificação de Pertencimento a uma Expressão Regular
 
-O método de derivação de Brzozowski permite que a cada caractere de uma string este símbolo seja consumido e a ER a qual deseja-se saber se a string pertence, seja derivada sobre este símbolo
-
-Suponha que desejamos determinar se a palavra $aabb$ pertence à ER $aa + b^*$
-
-Aplicando a derivação de Brzozowski sobre cada caractere da palavra, podemos gerar derivadas da ER até que toda a palavra $aabb$ seja consumida.
+Suponha que desejamos determinar se a palavra $aabb$ pertence à ER $aa + b^*$. Aplicando a derivação de Brzozowski sobre cada caractere da palavra, podemos gerar derivadas da ER até que toda a palavra $aabb$ seja consumida.
 
 $$
 \begin{align}
-    aa + b^* \sim aabb \Longleftrightarrow \delta_{a} aa + b^* \sim abb \tag{1}
+    aa + b^* \sim aabb &\Longleftrightarrow \delta_{a} aa + \delta_{a}b^* &\sim& abb \\
+                        &\Longleftrightarrow \delta_{a} a + \delta_{a}b^* &\sim& bb \\
+                        &\Longleftrightarrow \delta_{b} b \cdot b^* &\sim& b \\
+                        &\Longleftrightarrow \delta_{b} b \cdot b^* &\sim& \lambda \\
  \end{align}
 $$
+
+Na equação $(17)$ o primeiro caractere da palavra $aabb$ é consumido aplicando a regra de derivação $(14)$ na ER $aa + b^*$ sobre o simbolo $a$. Em seguida, na equação $(18)$, é aplicada a mesma regra sobre o próximo caractere da palavra.
+
+Nas equações $(19)$ e $(20)$, por sua vez, usa-se a propriedade descrita em $(13)$ para consumir $bb$. O algoritmo, portanto é finalizado com saída $\lambda$ e conclui-se que a palavra $aabb$ pertence à ER $aa + b^*$.
